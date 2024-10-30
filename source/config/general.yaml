@@ -1,0 +1,18 @@
+# instrucoes
+#   versao: DESENVOLVIMENTO/PRODUCAO
+
+# painel de controle
+painel_controle:
+  versao: DESENVOLVIMENTO
+
+# gravação de logs
+nome_completo_arquivo_log:
+  diretorio_pai: C:\Workflow\INFORMACOES DIARIAS\{}\
+  destino: C:\Workflow\INFORMACOES DIARIAS\{}\log-{}-SUBSTITUIR-NOME_{}_{}_{}.txt
+
+# informações - conclusão do processo pelo slack
+alerta_slack:
+  titulo: TESTE
+
+# exportação de resultado do programa para json
+nomes_completos_exportacao_json: C:\Workflow\INFORMACOES DIARIAS\{}\{}-SUBSTITUIR-NOME_{}_{}_{}.json

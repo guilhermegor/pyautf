@@ -1,0 +1,17 @@
+# uninstall all libs from python
+$ py -m pip freeze | grep -v "^-e" | xargs pip uninstall -y
+
+# collect all libs from environment in order to build the requirements.txt
+$ py -m pip freeze > "full\path\save.txt"
+
+# fetching all extensions from vs code into a notepad
+$ code --list-extensions  "full\path\save.txt"
+
+# installing extensions
+$ code --install-extension (extension-id  extension-vsix-path) # Installs an extension.
+
+# pyenv tutorial
+https://www.youtube.com/watch?v=9LYqtLuD7z4
+
+# venv tutorial
+https://www.youtube.com/watch?v=KxvKCSwlUv8&t=88s
