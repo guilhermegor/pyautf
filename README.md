@@ -1,4 +1,4 @@
-# Framework PYAUT
+# PY Automation Framework
 
 Raw framework for automation, preparing dataset and extracting value from information
 
