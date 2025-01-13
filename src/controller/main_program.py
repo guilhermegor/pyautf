@@ -9,7 +9,7 @@ from keyring import get_password
 # consultando módulos do projeto
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, \
-    USER, VERSAO_EXECUCAO, HOSTNAME, CLS_POSTGRESQL_RAW, CLS_WEBHOOK_SLACK
+    USER, AMBIENTE_EXECUCAO, HOSTNAME, CLS_POSTGRESQL_RAW, CLS_WEBHOOK_SLACK
 from config.pool_conn import PoolConn
 from model.raw import RawDBs
 from model.cleaned import CleanedDatabases
@@ -45,7 +45,7 @@ dict_exportacao = dict()
 nome_completo_json_xpt = YAML_USER_CFG['json']['nome_completo_xpt'].format(
         USER,
         DatesBR().curr_date, 
-        VERSAO_EXECUCAO.lower(), 
+        AMBIENTE_EXECUCAO.lower(), 
         USER, 
         DatesBR().curr_date.strftime('%Y%m%d'),
         DatesBR().curr_time.strftime('%H%M%S')
@@ -54,7 +54,7 @@ nome_completo_json_xpt = YAML_USER_CFG['json']['nome_completo_xpt'].format(
 # gerando evidência nos logs
 CreateLog().infos(LOGGER, 'Código do operador: {}'.format(USER))
 CreateLog().infos(LOGGER, 'Hostname da máquina executando a rotina: {}'.format(HOSTNAME))
-CreateLog().infos(LOGGER, 'Versão de execução do código: {}'.format(VERSAO_EXECUCAO))
+CreateLog().infos(LOGGER, 'Versão de execução do código: {}'.format(AMBIENTE_EXECUCAO))
 CreateLog().infos(LOGGER, 'YAML em memória: {}'.format(YAML_USER_CFG))
 CreateLog().infos(LOGGER, 'Nome completo json de exportação para lugar na rede: {}'.format(
     nome_completo_json_xpt))
@@ -96,7 +96,7 @@ CreateLog().infos(LOGGER,
                   + 'dicionários, para local na rede')
 
 # enviando mensagens por webhook
-if VERSAO_EXECUCAO == 'PRD':
+if AMBIENTE_EXECUCAO == 'PRD':
     cls_webhook.send_message(
         YAML_USER_CFG['webhooks']['rotina']['mensagem'].format(
             YAML_USER_CFG['webhooks']['rotina']['titulo'],

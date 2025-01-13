@@ -20,9 +20,9 @@ poetry config virtualenvs.in-project true
 
 echo .venv with configuration errors - remove and reinstall
 rm -rf .venv
+poetry env remove python
 
 echo venv python libs
-
 poetry init
 poetry env use 3.9.13
 poetry env use $(pyenv which python)

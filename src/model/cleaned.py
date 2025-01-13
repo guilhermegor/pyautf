@@ -10,7 +10,7 @@ from typing import Type, List, Tuple
 # consultando módulos do projeto
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, USER
-from config.global_slots import VERSAO_EXECUCAO, HOSTNAME
+from config.global_slots import AMBIENTE_EXECUCAO, HOSTNAME
 from model.raw import RawDBs
 from model.helper import HelperFuncs
 # consultando pacotes alocados na pasta acima do projeto

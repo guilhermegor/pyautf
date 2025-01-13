@@ -1,7 +1,7 @@
 # painel de controle
 painel_controle:
   #   versão do código em execução (DEV / PRD)
-  versao: DEV
+  ambiente: DEV
   bl_debug_mode: False
 
 # gravação de logs

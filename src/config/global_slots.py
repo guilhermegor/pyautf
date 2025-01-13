@@ -30,7 +30,7 @@ YAML_USER_CFG = reading_yaml(r'{}\settings\user_cfg.yaml'.format(
     os.path.dirname(os.path.realpath(__file__))))
 
 # versão de execução do código
-VERSAO_EXECUCAO = YAML_USER_CFG['painel_controle']['versao']
+AMBIENTE_EXECUCAO = YAML_USER_CFG['painel_controle']['ambiente']
 
 # diretório pai
 DIR_PARENT = YAML_USER_CFG['nome_completo_arquivo_log']['diretorio_pai'].format(
@@ -39,11 +39,11 @@ DIR_PARENT = YAML_USER_CFG['nome_completo_arquivo_log']['diretorio_pai'].format(
 _ = DirFilesManagement().mk_new_directory(DIR_PARENT)
 
 # iniciando logging
-if VERSAO_EXECUCAO in ['DEV', 'PRD']:
+if AMBIENTE_EXECUCAO in ['DEV', 'PRD']:
     NOME_COMP_DESTINO_LOG = YAML_USER_CFG['nome_completo_arquivo_log']['destino'].format(
         USER,
         DatesBR().curr_date, 
-        VERSAO_EXECUCAO.lower(), 
+        AMBIENTE_EXECUCAO.lower(), 
         USER, 
         DatesBR().curr_date.strftime('%Y%m%d'),
         DatesBR().curr_time.strftime('%H%M%S')
