@@ -6,8 +6,8 @@ painel_controle:
 
 # gravação de logs
 nome_completo_arquivo_log:
-  diretorio_pai: C:\Users\{}\OneDrive\Workspace\INFORMACOES DIARIAS\{}\
-  destino: C:\Users\{}\OneDrive\Workspace\INFORMACOES DIARIAS\{}\log-{}-SUBSTITUIR-NOME_{}_{}_{}.txt
+  diretorio_pai: '{}\INFORMACOES DIARIAS\{}\'
+  destino: '{}\INFORMACOES DIARIAS\{}\log-{}-SUBSTITUIR-NOME_{}_{}_{}.txt'
 
 # bancos de dados
 postgresql:
@@ -45,4 +45,4 @@ webhooks:
 
 # exportação de arquivos para lugar na rede
 json:
-  nome_completo_xpt: C:\Users\{}\OneDrive\Workspace\INFORMACOES DIARIAS\{}\{}-SUBSTITUIR-NOME_{}_{}_{}.json
+  nome_completo_xpt: '{}\INFORMACOES DIARIAS\{}\{}-SUBSTITUIR-NOME_{}_{}_{}.json'

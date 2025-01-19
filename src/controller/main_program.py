@@ -9,8 +9,7 @@ from keyring import get_password
 # consultando módulos do projeto
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, \
-    USER, AMBIENTE_EXECUCAO, HOSTNAME, CLS_POSTGRESQL_RAW, CLS_WEBHOOK_SLACK
-from config.pool_conn import PoolConn
+    USER, AMBIENTE_EXECUCAO, HOSTNAME, CLS_POSTGRESQL_RAW, CLS_WEBHOOK_SLACK, ROOT_DIR_XPT
 from model.raw import RawDBs
 from model.cleaned import CleanedDatabases
 from model.curated import CuratedData
@@ -43,7 +42,7 @@ dict_exportacao = dict()
 
 # arquivos de exportação
 nome_completo_json_xpt = YAML_USER_CFG['json']['nome_completo_xpt'].format(
-        USER,
+        ROOT_DIR_XPT,
         DatesBR().curr_date, 
         AMBIENTE_EXECUCAO.lower(), 
         USER, 

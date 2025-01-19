@@ -10,8 +10,8 @@ from keyring import get_password
 from typing import Type, Tuple, List, Dict
 # consultando módulos do projeto
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, USER
-from config.global_slots import AMBIENTE_EXECUCAO, HOSTNAME
+from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, USER, \
+    YAML_DBS, AMBIENTE_EXECUCAO, HOSTNAME
 from model.helper import HelperFuncs
 # consultando pacotes alocados na pasta acima do projeto
 sys.path.append(HelperFuncs().root_py_dev)
@@ -24,4 +24,10 @@ from stpstone.handling_data.str import StrHandler
 
 class RawDBs:
 
-    pass
+    def __init__(self, du_ant:datetime) -> None:
+        '''
+        DOCSTRING:
+        INPUTS:
+        OUTPUTS:
+        '''
+        self.dt_ref = DatesBR().sub_working_days(DatesBR().curr_date, du_ant)

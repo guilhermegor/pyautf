@@ -25,8 +25,15 @@ USER = getuser()
 # configuring machine hostname
 HOSTNAME = gethostname()
 
+# root - diretório central dos arquivos de exportação
+ROOT_DIR_XPT = get_password('ROOT_DIR_XPT', 'PATH')
+
 # alocação do yaml em memória
 YAML_USER_CFG = reading_yaml(r'{}\settings\user_cfg.yaml'.format(
+    os.path.dirname(os.path.realpath(__file__))))
+
+# databases
+YAML_DBS = reading_yaml(r'{}\settings\dbs.yaml'.format(
     os.path.dirname(os.path.realpath(__file__))))
 
 # versão de execução do código
@@ -34,14 +41,14 @@ AMBIENTE_EXECUCAO = YAML_USER_CFG['painel_controle']['ambiente']
 
 # diretório pai
 DIR_PARENT = YAML_USER_CFG['nome_completo_arquivo_log']['diretorio_pai'].format(
-    USER, DatesBR().curr_date
+    ROOT_DIR_XPT, DatesBR().curr_date
 )
 _ = DirFilesManagement().mk_new_directory(DIR_PARENT)
 
 # iniciando logging
 if AMBIENTE_EXECUCAO in ['DEV', 'PRD']:
     NOME_COMP_DESTINO_LOG = YAML_USER_CFG['nome_completo_arquivo_log']['destino'].format(
-        USER,
+        ROOT_DIR_XPT,
         DatesBR().curr_date, 
         AMBIENTE_EXECUCAO.lower(), 
         USER, 
