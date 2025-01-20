@@ -1,8 +1,10 @@
+
 # painel de controle
 painel_controle:
   #   versão do código em execução (DEV / PRD)
   ambiente: DEV
   bl_debug_mode: False
+  du_ant: 1
 
 # gravação de logs
 nome_completo_arquivo_log:
@@ -21,27 +23,6 @@ postgresql:
     password: PASSWORD
     host: HOST
     port: PORT
-
-# envio de alertas por webhooks
-webhooks:
-  keys:
-    # ! URL E ID_CHANNEL GENERIOS, FAVOR SUBSITUTIR SE NECESSARIO
-    url: URL
-    id_channel: ID_CHANNEL
-    # informações de acesso ao webhook
-    nome_webhook: WEBHOOK_SLACK
-    username: USERNAME
-    icon_emoji: ICON_EMOJI
-  rotina:
-    titulo: TITULO
-    mensagem: >
-      ROTINA: {} 
-      \n \n \t - Executadado em: {}. 
-      \n \n \t - Máquina do operador: {} 
-      \n \n \t - Sigla operador: {} 
-      \n \n \t - Evidências disponíveis em: {} 
-      \n \n \t - Logs disponíveis em: {} \n \n \t Abs,
-    bl_debug_mode: False
 
 # exportação de arquivos para lugar na rede
 json:

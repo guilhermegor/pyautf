@@ -8,8 +8,9 @@ from time import time
 from keyring import get_password
 # consultando módulos do projeto
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config.global_slots import LOGGER, DIR_PARENT, YAML_USER_CFG, NOME_COMP_DESTINO_LOG, \
+from config.global_slots import LOGGER, DIR_PARENT, NOME_COMP_DESTINO_LOG, \
     USER, AMBIENTE_EXECUCAO, HOSTNAME, CLS_POSTGRESQL_RAW, CLS_WEBHOOK_SLACK, ROOT_DIR_XPT
+from config.global_slots import YAML_WEBHOOKS, YAML_USER_CFG
 from model.raw import RawDBs
 from model.cleaned import CleanedDatabases
 from model.curated import CuratedData
@@ -42,13 +43,13 @@ dict_exportacao = dict()
 
 # arquivos de exportação
 nome_completo_json_xpt = YAML_USER_CFG['json']['nome_completo_xpt'].format(
-        ROOT_DIR_XPT,
-        DatesBR().curr_date, 
-        AMBIENTE_EXECUCAO.lower(), 
-        USER, 
-        DatesBR().curr_date.strftime('%Y%m%d'),
-        DatesBR().curr_time.strftime('%H%M%S')
-    )
+    ROOT_DIR_XPT,
+    DatesBR().curr_date, 
+    AMBIENTE_EXECUCAO.lower(), 
+    USER, 
+    DatesBR().curr_date.strftime('%Y%m%d'),
+    DatesBR().curr_time.strftime('%H%M%S')
+)
 
 # gerando evidência nos logs
 CreateLog().infos(LOGGER, 'Código do operador: {}'.format(USER))
@@ -60,16 +61,10 @@ CreateLog().infos(LOGGER, 'Nome completo json de exportação para lugar na rede
 
 CreateLog().infos(LOGGER, 'Finalizando processo de definição de variáveis')
 
-# pool de conexões
-CreateLog().infos(LOGGER, 'Iniciando processo de definição de pool de conexões')
-cls_db = CLS_POSTGRESQL_RAW
-cls_webhook = CLS_WEBHOOK_SLACK
-CreateLog().infos(LOGGER, 'Finalizando processo de definição de pool de conexões')
-
 # classes de interesse
 CreateLog().infos(LOGGER, 'Iniciando processo de definição de classes de interesse')
-cls_raw_dbs = RawDBs()
-cls_cleaned_dbs = CleanedDatabases(cls_raw_dbs)
+cls_raw_dbs = RawDBs(YAML_USER_CFG['painel_controle']['du_ant'])
+cls_cleaned_dbs = CleanedDatabases()
 cls_curated_dbs = CuratedData()
 CreateLog().infos(LOGGER, 'Finalizando processo de definição de classes de interesse')
 
@@ -78,7 +73,7 @@ print('INÍCIO DAS REGRAS DE NEGÓCIO')
 
 # fechando conexões de interesse
 CreateLog().infos(LOGGER, 'Iniciando processo de fechamento da conexão com db')
-cls_db._close
+CLS_POSTGRESQL_RAW._close
 CreateLog().infos(LOGGER, 'Finalizando processo de fechamento da conexão com db')
 
 # criando json com gravação da saída em lugar na rede
@@ -96,9 +91,9 @@ CreateLog().infos(LOGGER,
 
 # enviando mensagens por webhook
 if AMBIENTE_EXECUCAO == 'PRD':
-    cls_webhook.send_message(
-        YAML_USER_CFG['webhooks']['rotina']['mensagem'].format(
-            YAML_USER_CFG['webhooks']['rotina']['titulo'],
+    CLS_WEBHOOK_SLACK.send_message(
+        YAML_WEBHOOKS['rotina']['mensagem'].format(
+            YAML_WEBHOOKS['rotina']['titulo'],
             DatesBR().curr_date_time(),
             HOSTNAME, 
             USER, 

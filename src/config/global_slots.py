@@ -29,7 +29,11 @@ HOSTNAME = gethostname()
 ROOT_DIR_XPT = get_password('ROOT_DIR_XPT', 'PATH')
 
 # alocação do yaml em memória
-YAML_USER_CFG = reading_yaml(r'{}\settings\user_cfg.yaml'.format(
+YAML_USER_CFG = reading_yaml(r'{}\settings\_user_cfg.yaml'.format(
+    os.path.dirname(os.path.realpath(__file__))))
+
+# webhooks
+YAML_WEBHOOKS = reading_yaml(r'{}\settings\webhooks.yaml'.format(
     os.path.dirname(os.path.realpath(__file__))))
 
 # databases
@@ -93,19 +97,19 @@ CLS_POSTGRESQL_RAW = PostgreSQLDB(
 # conexões com webhooks
 CLS_WEBHOOK_SLACK = WebhookSlack(
     get_password(
-        YAML_USER_CFG['keys']['nome_webhook'], 
-        YAML_USER_CFG['keys']['url']
+        YAML_WEBHOOKS['keys']['nome_webhook'], 
+        YAML_WEBHOOKS['keys']['url']
     ),
     get_password(
-        YAML_USER_CFG['keys']['nome_webhook'], 
-        YAML_USER_CFG['keys']['id_channel']
+        YAML_WEBHOOKS['keys']['nome_webhook'], 
+        YAML_WEBHOOKS['keys']['id_channel']
     ),
     get_password(
-        YAML_USER_CFG['keys']['nome_webhook'], 
-        YAML_USER_CFG['keys']['username']
+        YAML_WEBHOOKS['keys']['nome_webhook'], 
+        YAML_WEBHOOKS['keys']['username']
     ),
     get_password(
-        YAML_USER_CFG['keys']['nome_webhook'], 
-        YAML_USER_CFG['keys']['icon_emoji']
+        YAML_WEBHOOKS['keys']['nome_webhook'], 
+        YAML_WEBHOOKS['keys']['icon_emoji']
     ),
 )
