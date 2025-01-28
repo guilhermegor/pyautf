@@ -31,10 +31,10 @@ poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 REM pyenv tutorial
 https://www.youtube.com/watch?v=9LYqtLuD7z4
+https://realpython.com/dependency-management-python-poetry/
 
 REM venv tutorial
 https://www.youtube.com/watch?v=KxvKCSwlUv8&t=88s
-
 https://www.youtube.com/watch?v=Ji2XDxmXSOM
 https://www.youtube.com/watch?v=gna8CRSYAY4
 

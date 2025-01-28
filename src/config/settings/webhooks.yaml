@@ -1,6 +1,6 @@
 
 keys:
-  # ! URL E ID_CHANNEL GENERIOS, FAVOR SUBSITUTIR SE NECESSARIO
+  # ! URL E ID_CHANNEL GENERICOS, FAVOR SUBSITUTIR SE NECESSARIO
   url: URL
   id_channel: ID_CHANNEL
   # informações de acesso ao webhook
